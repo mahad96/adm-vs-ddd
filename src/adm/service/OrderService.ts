@@ -11,8 +11,7 @@ export class OrderService{
 
     public create(id: number, status: OrderStatus, deliveryAddress: Address, items: Item[]): void{
         const order = new Order();
-        order.id = id;
-        order.status = status;
+        order.status = OrderStatus.NEW;
         order.deliveryAddress = deliveryAddress;
         order.items = items;
         return this.orderRepository.add(order);
