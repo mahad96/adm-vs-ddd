@@ -1,4 +1,3 @@
-import { Address } from '../model/Address';
 import { Item } from '../model/Item';
 import { Order } from '../model/Order';
 import { OrderStatus } from '../model/OrderStatus';
@@ -8,27 +7,25 @@ export class OrderController {
 
     private readonly orderService: OrderService;
 
-    public constructor(orderService: OrderService) {
-        this.orderService = orderService;
-    }
+    public constructor(orderService: OrderService) {}
 
-    public createOrder(items: Item[], deliveryAddress: Address): string {
-        const order = this.orderService.create(items, deliveryAddress);
+    public async createOrder(items: Item[]): Promise<string> {
+        const order = await this.orderService.create(items);
         return order.id;
     }
 
-    public update(order: Order, newStatus: OrderStatus): string {
+    public async update(order: Order, newStatus: OrderStatus): Promise<string> {
         try {
-            this.orderService.updateStatus(order.id, newStatus);
+            await this.orderService.updateStatus(order.id, newStatus);
             return `Successfully transitioned status from ${order.status} to ${newStatus} for order ${order.id}`;
         } catch(error) {
             return 'FORBIDDEN';
         }
     }
 
-    public addItem(item: Item, order: Order): string {
+    public async addItem(item: Item, order: Order): Promise<string> {
         try { 
-            this.orderService.addItem(item.sku, item.quantity, item.price, order.id);
+            await this.orderService.addItem(item.sku, item.quantity, item.price, order.id);
             return `Added item ${item.sku} to order ${order.id}`;
         } catch (error) {
             return 'FORBIDDEN';
