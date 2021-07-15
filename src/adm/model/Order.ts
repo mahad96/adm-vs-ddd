@@ -1,13 +1,17 @@
 import { OrderStatus } from './OrderStatus';
-import { Address } from './Address';
 import { Item } from './Item';
 
 export class Order {
 
     private _id: string;
     private _status: OrderStatus;
-    private _deliveryAddress: Address;
     private _items: Item[];
+
+    public constructor(id: string, status: OrderStatus, items: Item[]) {
+        this.id = id;
+        this.status = status;
+        this.items = items;
+    }
 
     public get id(): string {
         return this._id;
@@ -23,14 +27,6 @@ export class Order {
 
     public set status(status: OrderStatus) {
         this._status = status;
-    }
-
-    public get deliveryAddress(): Address {
-        return this._deliveryAddress;
-    }
-
-    public set deliveryAddress(address: Address) {
-        this.deliveryAddress = address;
     }
 
     public get items(): Item[] {

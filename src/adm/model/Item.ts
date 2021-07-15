@@ -8,11 +8,10 @@ export class Item {
 
     private order: Order;
 
-    public constructor(sku: string, quantity: number, price: number, order: Order) {
+    public constructor(sku: string, quantity: number, order: Order) {
         this.sku = sku;
-        this.quantity = quantity,
-        this.price = price,
-        this.order = order
+        this.quantity = quantity;
+        this.order = order;
     }
 
     public get sku(): string {
