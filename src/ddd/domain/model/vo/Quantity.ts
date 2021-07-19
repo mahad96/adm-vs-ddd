@@ -12,4 +12,5 @@ export class Quantity {
     public equals(newQuantity: Quantity): boolean {
         return this.value === newQuantity.value;
     }
+
 }

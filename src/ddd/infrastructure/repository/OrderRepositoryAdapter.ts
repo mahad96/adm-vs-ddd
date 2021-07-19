@@ -10,4 +10,5 @@ export class OrderRepositoryAdapter extends Repository implements OrderRepositor
     public async find(id: string): Promise<Order> {
         return await this.find(id);
     }
+
 }

@@ -20,4 +20,5 @@ export class OrderStatus {
     public equals(newStatus: string): boolean {
         return this.value === newStatus;
     }
+
 }

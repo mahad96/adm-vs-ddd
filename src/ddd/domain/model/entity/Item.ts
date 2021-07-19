@@ -25,4 +25,5 @@ export class Item {
     public changePrice(newPrice: number): void {
         this.price = Price.create(newPrice);
     }
+
 }
