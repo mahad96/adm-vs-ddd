@@ -1,27 +1,27 @@
-import { OrderStatus, OrderStatuses } from './OrderStatus';
+import { v4 as uuidv4 } from 'uuid';
 import { Item } from './Item';
-import { Id } from './Id';
+import { OrderStatus, OrderStatuses } from '../vo/OrderStatus';
 
 export class Order {
 
+    public readonly id: string;
+    private status: OrderStatus;
+
     private constructor(
-        public readonly id: Id,
-        private status: OrderStatus,
         private items: Item[]
-    ) {}
+    ) {
+        this.id = uuidv4();
+        this.status = OrderStatus.create(OrderStatuses.NEW);
+    }
 
     public static create(items: Item[]): Order {
-        return new Order(
-            Id.generate(),
-            OrderStatus.create(OrderStatuses.NEW),
-            items
-        )
+        return new Order(items);
     }
 
     public changeStatusTo(status: string): void {
         const newStatus = OrderStatus.create(status);
         if(this.status.equals(OrderStatuses.SHIPPED) && newStatus.equals(OrderStatuses.NEW) || this.status.equals(OrderStatuses.NEW) && newStatus.equals(OrderStatuses.SHIPPED)) {
-            throw new Error(`Transitioning order status from ${this.status.value} to ${newStatus.value} is prohibitied`);
+            throw new Error(`Transitioning order status from ${this.status.value} to ${newStatus.value} is prohibited`);
         }
         this.status = newStatus;
     }

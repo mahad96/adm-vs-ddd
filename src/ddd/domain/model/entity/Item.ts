@@ -1,6 +1,6 @@
-import { SKU } from './SKU';
-import { Quantity } from './Quantity';
-import { Price } from './Price';
+import { SKU } from '../vo/SKU';
+import { Quantity } from '../vo/Quantity';
+import { Price } from '../vo/Price';
 
 export class Item {
 

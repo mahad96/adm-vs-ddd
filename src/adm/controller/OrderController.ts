@@ -1,7 +1,7 @@
 import { Item } from '../model/Item';
 import { OrderService } from '../service/OrderService';
 
-export class OrderController {
+class OrderController {
 
     private readonly orderService: OrderService;
 
@@ -16,7 +16,7 @@ export class OrderController {
         this.createResponse(orderResult);
     }
 
-    public async update(req: Request): Promise<Response> {
+    public async updateStatus(req: Request): Promise<Response> {
         const reqBody = JSON.parse(req.body);
         const orderId = reqBody.orderId;
         const newStatus = reqBody.newStatus;
