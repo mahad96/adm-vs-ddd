@@ -1,7 +1,7 @@
 import { OrderRepository } from '../../domain/interface/OrderRepository';
 import { Order } from '../../domain/model/entity/Order';
 
-export class OrderRepositoryAdapter extends Repository implements OrderRepository {
+export class DBOrderRepository extends Repository implements OrderRepository {
 
     public async save(order: Order): Promise<boolean> {
         return await this.insert(order);

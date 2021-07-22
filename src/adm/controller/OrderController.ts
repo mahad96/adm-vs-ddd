@@ -10,25 +10,19 @@ class OrderController {
     }
 
     public async createOrder(req: Request): Promise<Response> {
-        const reqBody = JSON.parse(req.body);
-        const items: Item[] = reqBody.items;
+        const items: Item[] = req.body.items;
         const orderResult = await this.orderService.create(items);
         this.createResponse(orderResult);
     }
 
     public async updateStatus(req: Request): Promise<Response> {
-        const reqBody = JSON.parse(req.body);
-        const orderId = reqBody.orderId;
-        const newStatus = reqBody.newStatus;
+        const { orderId, newStatus } = req.body;
         const updateResult = await this.orderService.updateStatus(orderId, newStatus);
         this.createResponse(updateResult);
     }
 
     public async addItem(req: Request): Promise<Response> {
-        const reqBody = JSON.parse(req.body);
-        const orderId = reqBody.orderId;
-        const sku = reqBody.sku;
-        const quantity = reqBody.quantity;
+        const { orderId, sku, quantity } = req.body;
         const addResult = await this.orderService.addItem(orderId, sku, quantity);
         this.createResponse(addResult);
     }

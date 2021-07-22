@@ -2,7 +2,7 @@ import { AddItemService } from '../../application/service/AddItemService';
 import { createResponse } from './utils/ResponseBuilder';
 
 
-class AddItem {
+class ItemController {
 
     private readonly addItemService: AddItemService;
 
